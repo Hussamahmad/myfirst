@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <script src="https://kit.fontawesome.com/4a3eda80d3.js" crossorigin="anonymous"></script>
+    <title>{{ book.name }}</title>
+</head>
+
+<body>
+    <div class="m-3">
+        {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+        {% endif %}
+        <div class="book-header p-3">
+            <h3 class="font-weight-bold">{{ book.name }}</h3>
+            <h4 class="font-italic">by {{ book.company }}</h4>
+        </div>
+
+        {% if book.number %}
+            <p2>{{ book.number }}</p2>
+        {% endif %}
+
+        <!-- Synopsis Section -->
+        <div class="synopsis p-3">
+            <p class="subtitle">price</p>
+            {% if book.price %}
+            <span>{{ book.price }}</span>
+            {% else %}
+            <span class="font-italic">لا توجد تفاصيل</span>
+            {% endif %}
+        </div>
+        <!-- End Book Synopsis Section -->
+
+        <!-- Book Review Section -->
+        <div class="review p-3 my-3">
+            <p class="subtitle baskerville">ملاحظة</p>
+            <div class="mb-3">
+                <span>{{ book.review.stars }}</span>
+        </div>
+        <p class="subtitle baskerville">تفاصيل</p>
+        {% if book.review.thoughts %}
+        <p>{{ book.review.thoughts }}</p>
+        {% else %}
+        <p class="font-italic">...</p>
+        {% endif %}
+        <a href="{% url 'books:update_review' book.id %}">
+            <button class="btn btn-outline-secondary">تعديل التفاصيل</button>
+        </a>
+    </div>
+    <!-- End Book Review Section -->
+
+    <div class="edit-btns p-3 d-flex justify-content-between">
+        <a href="{% url 'books:update_book' book.id %}">
+            <button class="btn btn-info">تعديل الصنف</button>
+        </a>
+        <a href="{% url 'books:delete_book' book.id %}">
+            <button class="btn btn-danger">حذف الصنف</button>
+        </a>
+    </div>
+    <a class="p-3" href="{% url 'books:index' %}">رجوع للصفحة الرئيسية</a>
+    </div>
+</body>
+
+</html>

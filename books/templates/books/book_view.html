@@ -1,0 +1,29 @@
+{% extends 'books/base.html' %}
+
+{#{% block recent %}#}
+{#<div class="latest-wrapper container">#}
+{#    <h5 class="mx-2 my-4 text-center">المضاف حديثا</h5>#}
+{#    <div class="multiple-items">#}
+{#        {% if books_list %}#}
+{#        {% for book in books_list %}#}
+{#        <div class="book-wrapper mx-2">#}
+{#            {% if book.number %}#}
+{#            <a href="{% url 'books:detail' book.id %}">#}
+{#                <p>{{ book.number }}</p>#}
+{#                                <p class="book-title">{{book.name}}</p>#}
+{#            </a>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#    {% else %}#}
+{#    <p>/</p>#}
+{#    {% endif %}#}
+{#    <div class="my-4 text-center">#}
+{#        <a href="{% url 'books:new_book' %}">#}
+{#            <button type="button" class="btn btn-secondary">اضافة صنف</button>#}
+{#        </a>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{#{% endblock %}#}

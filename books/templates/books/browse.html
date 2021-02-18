@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <title>شركة الدولية الحديثة</title>
+    <title>الصنف</title>
+</head>
+
+<body>
+    <div class="mt-5">
+        <h4 class="px-2">عرض الاصناف</h4>
+        <table class="book-table my-4">
+            <tr class="px-2">
+                <th><a href="{% url 'books:order_by' 'name' %}">الاسم</a></th>
+                <th><a href="{% url 'books:order_by' 'company' %}">الشركة</a></th>
+                <th><a href="{% url 'books:order_by' 'number' %}">رقم الصنف</a></th>
+                <th><a href="{% url 'books:order_by' 'price' %}">السعر</a></th>
+
+            </tr>
+            {% if ordered_books %}
+            {% for book in ordered_books %}
+            <tr>
+                <td><a href="{% url 'books:detail' book.id %}">{{ book.name }}</a></td>
+                <td>{{ book.company }}</td>
+                <td>{{ book.number }}</td>
+                <td>{{ book.price }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+        <a class="px-2" href="{% url 'books:index' %}">رجوع</a>
+    </div>
+
+</body>
+
+</html>
